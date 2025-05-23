@@ -9,3 +9,14 @@ def get_explicit_pkgs():
 
     payload.check_returncode()
     return payload.stdout.strip()
+
+
+
+def main():
+    pass
+
+
+
+
+if __name__ == "__main__":
+    main()

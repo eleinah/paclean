@@ -19,7 +19,7 @@ def get_pkg_info(pkg):
     Returns the full info of a given package (pkg)
     """
     payload = subprocess.run(
-        ["pacman", "-Qi", pkg]
+        ["pacman", "-Qi", pkg],
         capture_output=True,
         text=True
     )

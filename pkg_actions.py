@@ -14,9 +14,9 @@ def get_explicit_pkgs():
     pkgs = payload.stdout.strip().split("\n")
     return pkgs
 
-def get_pkg_info(pkg):
+def get_pkg_info(pkg: str):
     """
-    Returns the full info of a given package (pkg)
+    Returns the full info of a given package (str: pkg)
     """
     payload = subprocess.run(
         ["pacman", "-Qi", pkg],
@@ -28,9 +28,9 @@ def get_pkg_info(pkg):
     info = payload.stdout.strip()
     return info
 
-def get_pkg_size(pkg):
+def get_pkg_size(pkg: str):
     """
-    Returns the size of a given package (pkg)
+    Returns the size of a given package (str: pkg)
     """
     payload = subprocess.run(
         ["expac", "-H", "M", "%m", pkg],

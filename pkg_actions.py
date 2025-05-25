@@ -48,8 +48,10 @@ def rem_cache(amt_kept: str = "0", dry: bool = False):
     """
     Clears the pacman cache and keeps the specified amount (str: amt_kept, default=0)
     """
-    if amt_kept.isnumeric != True:
-        raise Exception("amt_kept must only be numeric")
+    if amt_kept.strip().isnumeric() == True and 0 <= int(amt_kept) <= 9223372036854775807:
+        pass
+    else:
+        raise Exception("amt_kept must only be numeric and 0-9223372036854775807")
     if dry == True:
         process_result = subprocess.run(
             ["paccache", "-d", "-vu", "-k", amt_kept],

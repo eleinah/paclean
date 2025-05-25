@@ -4,42 +4,42 @@ def get_explicit_pkgs():
     """
     Returns all explicitly installed packages as individual strings inside of a list
     """
-    payload = subprocess.run(
+    process_result = subprocess.run(
     ["pacman", "-Qeqt"],
     capture_output=True,
     text=True,
     check=True
     )
 
-    pkgs = payload.stdout.strip().split("\n")
+    pkgs = process_result.stdout.strip().split("\n")
     return pkgs
 
 def get_pkg_info(pkg: str):
     """
     Returns the full info of a given package (str: pkg)
     """
-    payload = subprocess.run(
+    process_result = subprocess.run(
         ["pacman", "-Qi", pkg],
         capture_output=True,
         text=True,
         check=True
     )
 
-    info = payload.stdout.strip()
+    info = process_result.stdout.strip()
     return info
 
 def get_pkg_size(pkg: str):
     """
     Returns the size of a given package (str: pkg)
     """
-    payload = subprocess.run(
+    process_result = subprocess.run(
         ["expac", "-H", "M", "%m", pkg],
         capture_output=True,
         text=True,
         check=True
     )
 
-    unsplit_return = payload.stdout.strip()
+    unsplit_return = process_result.stdout.strip()
     split_return = unsplit_return.split("\t")
     size = split_return[0]
     return size
@@ -51,18 +51,18 @@ def rem_cache(amt_kept: str = "0", dry: bool = False):
     if amt_kept.isnumeric != True:
         raise Exception("amt_kept must only be numeric")
     if dry == True:
-        payload = subprocess.run(
+        process_result = subprocess.run(
             ["paccache", "-d", "-vu", "-k", amt_kept],
             capture_output=True,
             text=True,
             check=True
         )
     else:
-        payload = subprocess.run(
+        process_result = subprocess.run(
             ["paccache", "-r", "-vu", "-k", amt_kept],
             capture_output=True,
             text=True,
             check=True
         )
-    payload_result = payload.stdout.strip()
-    return payload_result
+    process_result_result = process_result.stdout.strip()
+    return process_result_result

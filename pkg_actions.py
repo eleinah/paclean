@@ -39,9 +39,7 @@ def get_pkg_size(pkg: str):
         check=True
     )
 
-    unsplit_return = process_result.stdout.strip()
-    split_return = unsplit_return.split("\t")
-    size = split_return[0]
+    size = process_result.stdout.strip()
     return size
 
 def rem_cache(amt_kept: str = "0", dry: bool = False):

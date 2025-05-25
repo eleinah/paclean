@@ -64,5 +64,5 @@ def rem_cache(amt_kept: str = "0", dry: bool = False):
             text=True,
             check=True
         )
-    process_result_result = process_result.stdout.strip()
-    return process_result_result
+    process_result = process_result.stdout.strip()
+    return process_result

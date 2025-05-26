@@ -1,9 +1,8 @@
 import subprocess
 
 def get_explicit_pkgs():
-    """
-    Returns all explicitly installed packages as individual strings inside a list
-    """
+    """Returns all explicitly installed packages as individual strings inside a list"""
+
     process_result = subprocess.run(
     ["pacman", "-Qeqt"],
     capture_output=True,
@@ -15,9 +14,8 @@ def get_explicit_pkgs():
     return pkgs
 
 def get_pkg_info(pkg: str):
-    """
-    Returns the full info of a given package (pkg: str)
-    """
+    """Returns the full info of a given package (pkg: str)"""
+
     process_result = subprocess.run(
         ["pacman", "-Qi", pkg],
         capture_output=True,
@@ -29,9 +27,8 @@ def get_pkg_info(pkg: str):
     return info
 
 def get_pkg_size(pkg: str):
-    """
-    Returns the size of a given package (pkg: str)
-    """
+    """Returns the size of a given package (pkg: str)"""
+
     process_result = subprocess.run(
         ["expac", "-H", "M", "%m", pkg],
         capture_output=True,
@@ -43,9 +40,8 @@ def get_pkg_size(pkg: str):
     return size
 
 def get_install_date(pkg: str):
-    """
-    Returns the installation date of a given package (pkg: str)
-    """
+    """Returns the installation date of a given package (pkg: str)"""
+
     raw_date = subprocess.Popen(
         ["expac", "-Q", "%l", pkg],
         stdout=subprocess.PIPE
@@ -62,9 +58,8 @@ def get_install_date(pkg: str):
     return stdout.strip()
 
 def rem_cache(amt_kept: str = "0", dry: bool = False):
-    """
-    Clears the pacman cache and keeps the specified amount (amt_kept: str, default="0")
-    """
+    """Clears the pacman cache and keeps the specified amount (amt_kept: str, default="0")"""
+
     if amt_kept.strip().isnumeric() == True and 0 <= int(amt_kept) <= 9223372036854775807:
         pass
     else:

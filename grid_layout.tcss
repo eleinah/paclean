@@ -1,0 +1,14 @@
+Screen {
+    layout: grid;
+    grid-size: 2;
+}
+
+#left-cell {
+    row-span: 2;
+    column-span: 1;
+}
+
+.box {
+    height: 100%;
+    border: darkred;
+}

@@ -3,12 +3,12 @@ Screen {
     grid-size: 2;
 }
 
-#left-cell {
+PackageList {
+    width: auto;
+    height: auto;
     row-span: 2;
     column-span: 1;
-}
-
-.box {
-    height: 100%;
+    /*background: $primary;*/
+    /*color: $text;*/
     border: darkred;
 }

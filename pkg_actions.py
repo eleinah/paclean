@@ -42,6 +42,25 @@ def get_pkg_size(pkg: str):
     size = process_result.stdout.strip()
     return size
 
+def get_install_date(pkg):
+    """
+    Returns the installation date of a given package (str: pkg)
+    """
+    raw_date = subprocess.Popen(
+        ["expac", "-Q", "%l", pkg],
+        stdout=subprocess.PIPE
+    )
+
+    filtered_date = subprocess.Popen(
+        ["awk", "{print $2, $3, $5}"],
+        stdin=raw_date.stdout,
+        stdout=subprocess.PIPE,
+        text=True
+    )
+
+    stdout, stderr = filtered_date.communicate()
+    return stdout.strip()
+
 def rem_cache(amt_kept: str = "0", dry: bool = False):
     """
     Clears the pacman cache and keeps the specified amount (str: amt_kept, default="0")

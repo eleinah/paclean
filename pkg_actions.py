@@ -42,7 +42,7 @@ def get_pkg_size(pkg: str):
     size = process_result.stdout.strip()
     return size
 
-def get_install_date(pkg):
+def get_install_date(pkg: str):
     """
     Returns the installation date of a given package (str: pkg)
     """

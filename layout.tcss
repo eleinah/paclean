@@ -1,14 +1,14 @@
 Screen {
-    layout: grid;
-    grid-size: 2;
+    layout: horizontal;
+    /*grid-size: 2;*/
 }
 
 PackageList {
     width: auto;
     height: auto;
-    row-span: 2;
-    column-span: 1;
+    /*row-span: 2;*/
+    /*column-span: 1;*/
     /*background: $primary;*/
     /*color: $text;*/
-    border: darkred;
+    /*border: darkred;*/
 }

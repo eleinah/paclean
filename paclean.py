@@ -22,7 +22,8 @@ class PacLean(App):
     TITLE = "PacLean"
     SUB_TITLE = "An interactive package cleaner for Arch Linux"
     BINDINGS = [
-        ("up", "TEST")
+        ("up", "ACTION_UP", "Up"),
+        ("down", "ACTION_DOWN", "Down")
     ]
 
     def compose(self: ComposeResult):

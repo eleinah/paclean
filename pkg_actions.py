@@ -28,35 +28,6 @@ def get_pkg_info(pkg: str):
     info = process_result.stdout.strip()
     return info
 
-def get_pkg_deps(pkg: str):
-    """
-    Returns all dependencies of a given package (str: pkg) as a list
-    """
-    process_result = subprocess.run(
-        ["expac", "-S", "%D", pkg],
-        capture_output=True,
-        text=True,
-        check=True
-    )
-
-    deps = process_result.stdout.strip().split(" ")
-    clean_deps = list(filter(None, deps))
-    return clean_deps
-
-def get_pkg_desc(pkg: str):
-    """
-    Returns the description of a given package (str: pkg)
-    """
-    process_result = subprocess.run(
-        ["expac", "-S", "%d", pkg],
-        capture_output=True,
-        text=True,
-        check=True
-    )
-
-    desc = process_result.stdout.strip()
-    return desc
-
 def get_pkg_size(pkg: str):
     """
     Returns the size of a given package (str: pkg)

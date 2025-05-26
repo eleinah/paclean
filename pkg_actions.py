@@ -16,7 +16,7 @@ def get_explicit_pkgs():
 
 def get_pkg_info(pkg: str):
     """
-    Returns the full info of a given package (str: pkg)
+    Returns the full info of a given package (pkg: str)
     """
     process_result = subprocess.run(
         ["pacman", "-Qi", pkg],
@@ -30,7 +30,7 @@ def get_pkg_info(pkg: str):
 
 def get_pkg_size(pkg: str):
     """
-    Returns the size of a given package (str: pkg)
+    Returns the size of a given package (pkg: str)
     """
     process_result = subprocess.run(
         ["expac", "-H", "M", "%m", pkg],
@@ -44,7 +44,7 @@ def get_pkg_size(pkg: str):
 
 def get_install_date(pkg: str):
     """
-    Returns the installation date of a given package (str: pkg)
+    Returns the installation date of a given package (pkg: str)
     """
     raw_date = subprocess.Popen(
         ["expac", "-Q", "%l", pkg],
@@ -63,7 +63,7 @@ def get_install_date(pkg: str):
 
 def rem_cache(amt_kept: str = "0", dry: bool = False):
     """
-    Clears the pacman cache and keeps the specified amount (str: amt_kept, default="0")
+    Clears the pacman cache and keeps the specified amount (amt_kept: str, default="0")
     """
     if amt_kept.strip().isnumeric() == True and 0 <= int(amt_kept) <= 9223372036854775807:
         pass

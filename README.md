@@ -1,4 +1,4 @@
-# PacLean
+# PacLean <sup><sub><sup>*made with [Textual](https://textual.textualize.io/)*</sup></sub></sup>
 
 ### W.I.P
 

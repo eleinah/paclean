@@ -2,7 +2,7 @@ import subprocess
 
 def get_explicit_pkgs():
     """
-    Returns all explicitly installed packages as individual strings inside of a list
+    Returns all explicitly installed packages as individual strings inside a list
     """
     process_result = subprocess.run(
     ["pacman", "-Qeqt"],
@@ -79,7 +79,7 @@ def rem_cache(amt_kept: str = "0", dry: bool = False):
         pass
     else:
         raise Exception("amt_kept must only be numeric and 0-9223372036854775807")
-    if dry == True:
+    if dry:
         process_result = subprocess.run(
             ["paccache", "-d", "-vu", "-k", amt_kept],
             capture_output=True,

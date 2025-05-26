@@ -11,7 +11,7 @@ def get_explicit_pkgs():
     check=True
     )
 
-    pkgs = "\n".join(process_result.stdout.strip().split("\n"))
+    pkgs = process_result.stdout.strip().split("\n")
     return pkgs
 
 def get_pkg_info(pkg: str):

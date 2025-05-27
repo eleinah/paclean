@@ -3,16 +3,21 @@ from textual.containers import ScrollableContainer
 from textual.widgets import SelectionList, Static
 from textual.widgets.selection_list import Selection
 from pkg_actions import get_explicit_pkgs, get_pkg_size, get_pkg_info
-
+import shutil
 
 class PackageList(SelectionList):
     """Widget that displays a table of packages with sizes and install dates"""
 
     pkg_list = get_explicit_pkgs()
 
-    selections = [Selection(Text("**CLEAR PACMAN CACHE?**", style="italic"), True)]
+    selections = []
     selected_pkgs = []
     clear_cache = []
+
+    if shutil.which("paccache") is not None:
+        selections.append(Selection(Text("**CLEAR PACMAN CACHE?**", style="italic"), True))
+    else:
+        selections.append(Selection(Text("**CLEAR PACMAN CACHE?** (must install pacman-contrib)", style="italic"), True, disabled=True))
 
     for pkg in pkg_list:
         size = get_pkg_size(pkg)

@@ -1,6 +1,6 @@
 from textual.widgets import SelectionList, Static
 from textual.widgets.selection_list import Selection
-from pkg_actions import get_explicit_pkgs, get_pkg_size
+from pkg_actions import get_explicit_pkgs, get_pkg_size, get_pkg_info
 
 
 class PackageList(SelectionList):
@@ -18,8 +18,32 @@ class PackageList(SelectionList):
     def on_mount(self) -> None:
         self.add_options(self.selections)
 
+        if self.selections:
+            self.highlighted = 0
+
+    def on_selection_list_selection_highlighted(self, event: SelectionList.SelectionHighlighted) -> None:
+        """Called when a selection is highlighted"""
+        if event.selection is not None:
+            pkg_name = event.selection.value
+            package_info_widget = self.app.query_one(PackageInfo)
+            package_info_widget.update_package_info(pkg_name)
+
 class PackageInfo(Static):
     """Widget that displays information about a selected package"""
 
     def on_mount(self) -> None:
-        self.update("Select a package to view its information")
+        pkg_list = get_explicit_pkgs()
+
+        if pkg_list:
+            first_pkg = pkg_list[0]
+            self.update_package_info(first_pkg)
+        else:
+            self.update("No packages found")
+
+    def update_package_info(self, pkg_name: str) -> None:
+        """Update the display with the info about the selected package"""
+        try:
+            package_info = get_pkg_info(pkg_name)
+            self.update(package_info)
+        except Exception as e:
+            self.update(f"Error getting info for {pkg_name}: {e}")

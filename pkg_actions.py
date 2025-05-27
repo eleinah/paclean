@@ -57,6 +57,19 @@ if shutil.which("expac") is not None:
         )
         output = process_result.stdout.strip()
         return output
+
+    def rem_pkgs(pkg: str) -> str:
+        """Removes selected packages"""
+
+        process_result = subprocess.run(
+            ["pacman", "--noprogressbar", "-Rns", pkg],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        removed = process_result.stdout.strip()
+        return removed
+
 else:
     print("Please install 'expac' to use this tool.")
     exit(1)

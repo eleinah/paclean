@@ -7,6 +7,11 @@ PackageList {
     height: 100%;
 }
 
+PackageList > .selection-list--button-selected {
+    color: red;
+    text-style: bold;
+}
+
 PackageInfo {
     width: 50%;
     height: 100%;

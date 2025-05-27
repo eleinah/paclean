@@ -12,6 +12,7 @@ class PackageList(SelectionList):
 
     selections = []
     selected_pkgs = []
+    clear_cache = []
 
     for pkg in pkg_list:
         size = get_pkg_size(pkg)
@@ -19,7 +20,7 @@ class PackageList(SelectionList):
         selections.append(Selection(display_txt, pkg))
 
     def on_mount(self) -> None:
-        self.add_option(Selection("CLEAR PACMAN CACHE?", True))
+        self.add_option(Selection("**CLEAR PACMAN CACHE?**", True))
         self.add_options(self.selections)
 
         if self.selections:
@@ -28,7 +29,7 @@ class PackageList(SelectionList):
     def on_selection_list_selection_highlighted(self, event: SelectionList.SelectionHighlighted) -> None:
         """Called when a selection is highlighted"""
         if event.selection is not None:
-            if event.selection.prompt == "CLEAR PACMAN CACHE?":
+            if event.selection.prompt == "**CLEAR PACMAN CACHE?**":
                 try:
                     info_placeholder = Text("Select this to clear the pacman cache with paccache. (runs 'paccache -r -vu -k 0')")
                     package_info_widget = self.app.query_one(PackageInfo)
@@ -49,11 +50,17 @@ class PackageList(SelectionList):
         """Called when a selection is toggled"""
 
         if event.selection is not None:
-            pkg_name = event.selection.value
-            if pkg_name not in self.selected_pkgs:
-                self.selected_pkgs.append(pkg_name)
-            elif pkg_name in self.selected_pkgs:
-                del self.selected_pkgs[self.selected_pkgs.index(pkg_name)]
+            if event.selection.prompt == "**CLEAR PACMAN CACHE?**":
+                if event.selection.value not in self.clear_cache:
+                    self.clear_cache.append(event.selection.value)
+                elif event.selection.value in self.clear_cache:
+                    del self.clear_cache[self.clear_cache.index(event.selection.value)]
+            else:
+                pkg_name = event.selection.value
+                if pkg_name not in self.selected_pkgs:
+                    self.selected_pkgs.append(pkg_name)
+                elif pkg_name in self.selected_pkgs:
+                    del self.selected_pkgs[self.selected_pkgs.index(pkg_name)]
 
 class PackageInfo(ScrollableContainer):
     """Widget that displays information about a selected package"""

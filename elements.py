@@ -47,6 +47,7 @@ class PackageList(SelectionList):
                     package_info_widget = self.app.query_one(PackageInfo)
                     package_info_widget.update_package_info(pkg_name)
                 except Exception as e:
+                    pkg_name = event.selection.value
                     error = Text(f"Failed to display {pkg_name}: {str(e)}")
                     package_info_widget = self.app.query_one(PackageInfo)
                     package_info_widget.remove_children()

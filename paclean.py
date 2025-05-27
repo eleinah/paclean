@@ -7,7 +7,6 @@ class PacLean(App):
     CSS_PATH = "layout.tcss"
     TITLE = "PacLean"
     SUB_TITLE = "An interactive package cleaner for Arch Linux"
-    BINDINGS = []
 
     def compose(self) -> ComposeResult:
         yield PackageList()

@@ -19,6 +19,7 @@ class PackageList(SelectionList):
         selections.append(Selection(display_txt, pkg))
 
     def on_mount(self) -> None:
+        self.add_option(Selection("CLEAR PACMAN CACHE?", True))
         self.add_options(self.selections)
 
         if self.selections:
@@ -27,9 +28,22 @@ class PackageList(SelectionList):
     def on_selection_list_selection_highlighted(self, event: SelectionList.SelectionHighlighted) -> None:
         """Called when a selection is highlighted"""
         if event.selection is not None:
-            pkg_name = event.selection.value
-            package_info_widget = self.app.query_one(PackageInfo)
-            package_info_widget.update_package_info(pkg_name)
+            if event.selection.prompt == "CLEAR PACMAN CACHE?":
+                try:
+                    info_placeholder = Text("Select this to clear the pacman cache with paccache. (runs 'paccache -r -vu -k 0')")
+                    package_info_widget = self.app.query_one(PackageInfo)
+                    package_info_widget.remove_children()
+                    package_info_widget.mount(Static(info_placeholder))
+                except Exception as e:
+                    error = Text(f"Failed to display info placeholder for cache clear option: {str(e)}")
+                    package_info_widget = self.app.query_one(PackageInfo)
+                    package_info_widget.remove_children()
+                    package_info_widget.mount(Static(error))
+
+            else:
+                pkg_name = event.selection.value
+                package_info_widget = self.app.query_one(PackageInfo)
+                package_info_widget.update_package_info(pkg_name)
 
     def on_selection_list_selection_toggled(self, event: SelectionList.SelectionToggled) -> None:
         if event.selection is not None:
@@ -43,13 +57,15 @@ class PackageInfo(ScrollableContainer):
     """Widget that displays information about a selected package"""
 
     def on_mount(self) -> None:
-        pkg_list = get_explicit_pkgs()
-
-        if pkg_list:
-            first_pkg = pkg_list[0]
-            self.update_package_info(first_pkg)
-        else:
-            self.mount(Static("No packages found"))
+        # pkg_list = get_explicit_pkgs()
+        #
+        # if pkg_list:
+        #     first_pkg = pkg_list[0]
+        #     self.update_package_info(first_pkg)
+        # else:
+        #     self.mount(Static("No packages found"))
+        info_placeholder = Text("")
+        self.mount(Static(info_placeholder))
 
     def update_package_info(self, pkg_name: str) -> None:
         """Update the display with the info about the selected package"""

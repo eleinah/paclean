@@ -16,15 +16,7 @@ class PackageList(SelectionList):
         selections.append(Selection(display_txt, pkg))
 
     async def on_mount(self) -> None:
-        self.pkg_list = get_explicit_pkgs()
-        selections = []
-
-        for pkg in self.pkg_list:
-            size = get_pkg_size(pkg)
-            display_txt = rf"{pkg}   \[{size}]"
-            selections.append(Selection(display_txt, pkg))
-
-        self.add_options(selections)
+        self.add_options(self.selections)
 
 class PackageInfo(Static):
     """Widget that displays information about a selected package"""

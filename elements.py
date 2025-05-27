@@ -1,6 +1,6 @@
 from rich.text import Text
 from textual.containers import ScrollableContainer
-from textual.widgets import SelectionList, Static
+from textual.widgets import SelectionList, Static, Button
 from textual.widgets.selection_list import Selection
 from pkg_actions import get_explicit_pkgs, get_pkg_size, get_pkg_info
 import shutil
@@ -95,3 +95,12 @@ class PackageInfo(ScrollableContainer):
         except Exception as e:
             self.remove_children()
             self.mount(Static(f"Error getting info for {pkg_name}: {e}"))
+
+class RunAndExit(Button):
+
+    def on_mount(self) -> None:
+        self.border_title = "Run & Exit"
+        self.label = "Clear selected packages"
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        pass

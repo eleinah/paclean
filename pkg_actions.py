@@ -39,26 +39,18 @@ def get_pkg_size(pkg: str) -> str:
     size = process_result.stdout.strip()
     return size
 
-def rem_cache(amt_kept: str = "0", dry: bool = False) -> str:
+def rem_cache(amt_kept: str = "0") -> str:
     """Clears the pacman cache and keeps the specified amount (amt_kept: str, default="0")"""
 
     if amt_kept.strip().isnumeric() == True and 0 <= int(amt_kept) <= 9223372036854775807:
         pass
     else:
         raise Exception("amt_kept must only be numeric and 0-9223372036854775807")
-    if dry:
-        process_result = subprocess.run(
-            ["paccache", "-d", "-vu", "-k", amt_kept],
-            capture_output=True,
-            text=True,
-            check=True
-        )
-    else:
-        process_result = subprocess.run(
-            ["paccache", "-r", "-vu", "-k", amt_kept],
-            capture_output=True,
-            text=True,
-            check=True
-        )
+    process_result = subprocess.run(
+        ["paccache", "-d", "-vu", "-k", amt_kept],
+        capture_output=True,
+        text=True,
+        check=True
+    )
     output = process_result.stdout.strip()
     return output

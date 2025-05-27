@@ -20,6 +20,7 @@ class PackageList(SelectionList):
         selections.append(Selection(display_txt, pkg))
 
     def on_mount(self) -> None:
+        self.border_title = "Package List"
         self.add_options(self.selections)
 
         if self.selections:
@@ -72,13 +73,7 @@ class PackageInfo(ScrollableContainer):
     """Widget that displays information about a selected package"""
 
     def on_mount(self) -> None:
-        # pkg_list = get_explicit_pkgs()
-        #
-        # if pkg_list:
-        #     first_pkg = pkg_list[0]
-        #     self.update_package_info(first_pkg)
-        # else:
-        #     self.mount(Static("No packages found"))
+        self.border_title = "Package Info"
         info_placeholder = Text("")
         self.mount(Static(info_placeholder))
 

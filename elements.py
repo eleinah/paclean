@@ -1,3 +1,4 @@
+from rich.text import Text
 from textual.containers import ScrollableContainer
 from textual.widgets import SelectionList, Static
 from textual.widgets.selection_list import Selection
@@ -45,8 +46,9 @@ class PackageInfo(ScrollableContainer):
         """Update the display with the info about the selected package"""
         try:
             package_info = get_pkg_info(pkg_name)
+            text = Text(package_info)
             self.remove_children()
-            self.mount(Static(package_info))
+            self.mount(Static(text))
         except Exception as e:
             self.remove_children()
             self.mount(Static(f"Error getting info for {pkg_name}: {e}"))

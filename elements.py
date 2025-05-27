@@ -15,7 +15,7 @@ class PackageList(SelectionList):
         display_txt = rf"{pkg}   \[{size}]"
         selections.append(Selection(display_txt, pkg))
 
-    async def on_mount(self) -> None:
+    def on_mount(self) -> None:
         self.add_options(self.selections)
 
 class PackageInfo(Static):

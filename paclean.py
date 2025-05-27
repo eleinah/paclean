@@ -20,7 +20,4 @@ def elevate():
 
 if __name__ == "__main__":
     elevate()
-    if os.geteuid() != 0:
-        exit("PacLean must be run as root to properly access pacman operations.")
-    else:
-        PacLean().run()
+    PacLean().run()

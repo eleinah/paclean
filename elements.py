@@ -11,6 +11,7 @@ class PackageList(SelectionList):
     pkg_list = get_explicit_pkgs()
 
     selections = []
+    selected_pkgs = []
 
     for pkg in pkg_list:
         size = get_pkg_size(pkg)
@@ -29,6 +30,14 @@ class PackageList(SelectionList):
             pkg_name = event.selection.value
             package_info_widget = self.app.query_one(PackageInfo)
             package_info_widget.update_package_info(pkg_name)
+
+    def on_selection_list_selection_toggled(self, event: SelectionList.SelectionToggled) -> None:
+        if event.selection is not None:
+            pkg_name = event.selection.value
+            if pkg_name not in self.selected_pkgs:
+                self.selected_pkgs.append(pkg_name)
+            elif pkg_name in self.selected_pkgs:
+                del self.selected_pkgs[self.selected_pkgs.index(pkg_name)]
 
 class PackageInfo(ScrollableContainer):
     """Widget that displays information about a selected package"""

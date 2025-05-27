@@ -42,9 +42,15 @@ class PackageList(SelectionList):
                     package_info_widget.mount(Static(error))
 
             else:
-                pkg_name = event.selection.value
-                package_info_widget = self.app.query_one(PackageInfo)
-                package_info_widget.update_package_info(pkg_name)
+                try:
+                    pkg_name = event.selection.value
+                    package_info_widget = self.app.query_one(PackageInfo)
+                    package_info_widget.update_package_info(pkg_name)
+                except Exception as e:
+                    error = Text(f"Failed to display {pkg_name}: {str(e)}")
+                    package_info_widget = self.app.query_one(PackageInfo)
+                    package_info_widget.remove_children()
+                    package_info_widget.mount(Static(error))
 
     def on_selection_list_selection_toggled(self, event: SelectionList.SelectionToggled) -> None:
         """Called when a selection is toggled"""

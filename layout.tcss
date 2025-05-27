@@ -12,6 +12,10 @@ PackageList > .selection-list--button-selected {
     text-style: bold;
 }
 
+PackageList > .option-list--option-disabled {
+    color: gray;
+}
+
 PackageInfo {
     width: 50%;
     height: 100%;

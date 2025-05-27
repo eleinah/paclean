@@ -1,6 +1,6 @@
 from textual.widgets import SelectionList, Static
 from textual.widgets.selection_list import Selection
-from pkg_actions import get_explicit_pkgs, get_pkg_size, get_install_date
+from pkg_actions import get_explicit_pkgs, get_pkg_size
 
 
 class PackageList(SelectionList):

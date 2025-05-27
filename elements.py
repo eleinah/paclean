@@ -87,7 +87,10 @@ class PackageInfo(ScrollableContainer):
         """Update the display with the info about the selected package"""
         try:
             package_info = get_pkg_info(pkg_name)
-            text = Text(package_info)
+            if pkg_name in PackageList.selected_pkgs:
+                text = Text(package_info, style="red")
+            if pkg_name not in PackageList.selected_pkgs:
+                text = Text(package_info)
             self.remove_children()
             self.mount(Static(text))
         except Exception as e:

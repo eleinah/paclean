@@ -21,4 +21,4 @@ class PackageInfo(Static):
     """Widget that displays information about a selected package"""
 
     def on_mount(self) -> None:
-        self.update("Package info goes here")
+        self.update("Select a package to view its information")

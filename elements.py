@@ -10,7 +10,7 @@ class PackageList(SelectionList):
 
     pkg_list = get_explicit_pkgs()
 
-    selections = []
+    selections = [Selection(Text("**CLEAR PACMAN CACHE?**", style="italic"), True)]
     selected_pkgs = []
     clear_cache = []
 
@@ -20,7 +20,6 @@ class PackageList(SelectionList):
         selections.append(Selection(display_txt, pkg))
 
     def on_mount(self) -> None:
-        self.add_option(Selection(Text("**CLEAR PACMAN CACHE?**", style="italic"), True))
         self.add_options(self.selections)
 
         if self.selections:

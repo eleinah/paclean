@@ -6,6 +6,15 @@ from pkg_actions import get_explicit_pkgs, get_pkg_size, get_install_date
 class PackageList(SelectionList):
     """Widget that displays a table of packages with sizes and install dates"""
 
+    pkg_list = get_explicit_pkgs()
+
+    selections = []
+
+    for pkg in pkg_list:
+        size = get_pkg_size(pkg)
+        display_txt = rf"{pkg}   \[{size}]"
+        selections.append(Selection(display_txt, pkg))
+
     async def on_mount(self) -> None:
         self.pkg_list = get_explicit_pkgs()
         selections = []

@@ -58,7 +58,7 @@ if shutil.which("expac") is not None:
         output = process_result.stdout.strip()
         return output
 
-    def rem_pkgs(pkg: str) -> str:
+    def rem_pkg(pkg: str) -> str:
         """Removes selected packages"""
 
         process_result = subprocess.run(

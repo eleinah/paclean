@@ -46,6 +46,8 @@ class PackageList(SelectionList):
                 package_info_widget.update_package_info(pkg_name)
 
     def on_selection_list_selection_toggled(self, event: SelectionList.SelectionToggled) -> None:
+        """Called when a selection is toggled"""
+
         if event.selection is not None:
             pkg_name = event.selection.value
             if pkg_name not in self.selected_pkgs:

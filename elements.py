@@ -16,11 +16,11 @@ class PackageList(SelectionList):
 
     for pkg in pkg_list:
         size = get_pkg_size(pkg)
-        display_txt = rf"{pkg}   \[{size}]"
+        display_txt = Text(f"{pkg}   ", style="bold") + Text(f"{size}", style="italic")
         selections.append(Selection(display_txt, pkg))
 
     def on_mount(self) -> None:
-        self.add_option(Selection("**CLEAR PACMAN CACHE?**", True))
+        self.add_option(Selection(Text("**CLEAR PACMAN CACHE?**", style="italic"), True))
         self.add_options(self.selections)
 
         if self.selections:

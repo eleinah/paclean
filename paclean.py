@@ -1,7 +1,6 @@
 from textual.app import App, ComposeResult
 from textual.widgets import Footer
-from elements import PackageList, PackageInfo
-import shutil
+from elements import PackageList, PackageInfo, RunExitButton
 from sys import exit
 
 class PacLean(App):
@@ -12,6 +11,7 @@ class PacLean(App):
     def compose(self) -> ComposeResult:
         yield PackageList()
         yield PackageInfo()
+        yield RunExitButton()
         yield Footer()
 
 if __name__ == "__main__":

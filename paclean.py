@@ -1,6 +1,5 @@
 from textual.app import App, ComposeResult
 from textual.widgets import Footer
-
 from elements import PackageList, PackageInfo
 
 
@@ -13,7 +12,6 @@ class PacLean(App):
     def compose(self) -> ComposeResult:
         yield PackageList()
         yield PackageInfo()
-
         yield Footer()
 
 if __name__ == "__main__":

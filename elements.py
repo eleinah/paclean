@@ -12,8 +12,7 @@ class PackageList(SelectionList):
 
         for pkg in self.pkg_list:
             size = get_pkg_size(pkg)
-            date = get_install_date(pkg)
-            display_txt = f"{pkg}  -  {size}  -  {date}"
+            display_txt = rf"{pkg}   \[{size}]"
             selections.append(Selection(display_txt, pkg))
 
         self.add_options(selections)

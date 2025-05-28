@@ -106,7 +106,7 @@ class RunAndExit(Button):
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if not self.confirmation_needed:
-            self.label = "Are you sure?"
+            self.label = Text("Are you sure?") + Text(" (FREEZE WILL OCCUR - PLEASE BE PATIENT)", style="bold red")
             self.confirmation_needed = True
         else:
             package_list_widget = self.app.query_one(PackageList)

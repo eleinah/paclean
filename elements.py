@@ -122,5 +122,4 @@ class RunAndExit(Button):
                 with open(log_filename, "w") as f:
                     print(cleared, file=f)
 
-            print(f"PacLean finished running. See '{log_filename}' to review what was done and removed.")
             self.app.exit("process complete", return_code=0)

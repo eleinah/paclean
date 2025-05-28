@@ -1,5 +1,6 @@
 from textual.app import App, ComposeResult
 from elements import PackageList, PackageInfo, RunAndExit
+from pkg_actions import log_filename
 from os import getuid, execvp
 from sys import argv, executable
 
@@ -20,4 +21,7 @@ def elevate():
 
 if __name__ == "__main__":
     elevate()
-    PacLean().run()
+    result = PacLean().run()
+
+    if result == "process complete":
+        print(f"PacLean finished running. See '{log_filename}' to review what was done and removed.")

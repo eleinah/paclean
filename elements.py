@@ -2,7 +2,7 @@ from rich.text import Text
 from textual.containers import ScrollableContainer
 from textual.widgets import SelectionList, Static, Button
 from textual.widgets.selection_list import Selection
-from pkg_actions import get_explicit_pkgs, get_pkg_size, get_pkg_info, rem_pkg, rem_cache, log_filename
+from pkg_actions import get_explicit_pkgs, get_pkg_size, get_pkg_info, rem_pkg, rem_cache
 from shutil import which
 
 class PackageList(SelectionList):

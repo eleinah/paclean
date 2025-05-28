@@ -1,12 +1,13 @@
-import subprocess
-import shutil
+from subprocess import run
+from shutil import which
 from sys import exit
 
-if shutil.which("expac") is not None:
+
+if which("expac") is not None:
     def get_explicit_pkgs() -> dict:
         """Returns all explicitly installed packages as individual strings inside a list"""
 
-        process_result = subprocess.run(
+        process_result = run(
         ["pacman", "-Qeqt"],
         capture_output=True,
         text=True,
@@ -19,7 +20,7 @@ if shutil.which("expac") is not None:
     def get_pkg_info(pkg: str) -> str:
         """Returns the full info of a given package (pkg: str)"""
 
-        process_result = subprocess.run(
+        process_result = run(
             ["pacman", "-Qi", pkg],
             capture_output=True,
             text=True,
@@ -32,7 +33,7 @@ if shutil.which("expac") is not None:
     def get_pkg_size(pkg: str) -> str:
         """Returns the size of a given package (pkg: str)"""
 
-        process_result = subprocess.run(
+        process_result = run(
             ["expac", "-H", "M", "%m", pkg],
             capture_output=True,
             text=True,
@@ -49,7 +50,7 @@ if shutil.which("expac") is not None:
             pass
         else:
             raise Exception("amt_kept must only be numeric and 0-9223372036854775807")
-        process_result = subprocess.run(
+        process_result = run(
             ["paccache", "-d", "-vu", "-k", amt_kept],
             capture_output=True,
             text=True,
@@ -61,8 +62,8 @@ if shutil.which("expac") is not None:
     def rem_pkg(pkg: str) -> str:
         """Removes selected packages"""
 
-        process_result = subprocess.run(
-            ["pacman", "--noprogressbar", "-Rns", pkg],
+        process_result = run(
+            ["pacman", "--noprogressbar", "--noconfirm", "-Rns", pkg],
             capture_output=True,
             text=True,
             check=True

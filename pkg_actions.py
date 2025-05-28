@@ -54,7 +54,7 @@ if which("expac") is not None:
         else:
             raise Exception("amt_kept must only be numeric and 0-9223372036854775807")
         process_result = run(
-            ["paccache", "-d", "-vu", "-k", amt_kept],
+            ["paccache", "-r", "-vu", "-k", amt_kept],
             capture_output=True,
             text=True,
             check=True

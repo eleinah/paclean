@@ -1,7 +1,10 @@
 from subprocess import run
 from shutil import which
 from sys import exit
+from datetime import datetime
 
+
+log_filename = f"/tmp/PacLean{datetime.now().strftime('%Y%m%d-%H%M%S')}.log"
 
 if which("expac") is not None:
     def get_explicit_pkgs() -> dict:
@@ -57,6 +60,9 @@ if which("expac") is not None:
             check=True
         )
         output = process_result.stdout.strip()
+
+        with open(log_filename, "w") as f:
+            print(output, file=f)
         return output
 
     def rem_pkg(pkg: str) -> str:
@@ -69,6 +75,9 @@ if which("expac") is not None:
             check=True
         )
         removed = process_result.stdout.strip()
+
+        with open(log_filename, "w") as f:
+            print(removed, file=f)
         return removed
 
 else:

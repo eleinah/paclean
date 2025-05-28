@@ -2,7 +2,7 @@ from rich.text import Text
 from textual.containers import ScrollableContainer
 from textual.widgets import SelectionList, Static, Button
 from textual.widgets.selection_list import Selection
-from pkg_actions import get_explicit_pkgs, get_pkg_size, get_pkg_info, rem_pkg, rem_cache
+from pkg_actions import get_explicit_pkgs, get_pkg_size, get_pkg_info, rem_pkg, rem_cache, log_filename
 from shutil import which
 
 class PackageList(SelectionList):
@@ -101,6 +101,26 @@ class RunAndExit(Button):
     def on_mount(self) -> None:
         self.border_title = "Run & Exit"
         self.label = "Clear selected packages"
+        self.confirmation_needed = False
+
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
-        pass
+        if not self.confirmation_needed:
+            self.label = "Are you sure?"
+            self.confirmation_needed = True
+        else:
+            package_list_widget = self.app.query_one(PackageList)
+            pkgs_to_remove = package_list_widget.selected_pkgs
+            cache_option = package_list_widget.clear_cache
+
+            for pkg in pkgs_to_remove:
+                removed = rem_pkg(pkg)
+                with open(log_filename, "w") as f:
+                    print(removed, file=f)
+            if True in cache_option:
+                cleared = rem_cache()
+                with open(log_filename, "w") as f:
+                    print(cleared, file=f)
+
+            print(f"PacLean finished running. See '{log_filename}' to review what was done and removed.")
+            self.app.exit("process complete", return_code=0)

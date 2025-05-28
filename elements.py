@@ -114,12 +114,8 @@ class RunAndExit(Button):
             cache_option = package_list_widget.clear_cache
 
             for pkg in pkgs_to_remove:
-                removed = rem_pkg(pkg)
-                with open(log_filename, "w") as f:
-                    print(removed, file=f)
+                rem_pkg(pkg)
             if True in cache_option:
-                cleared = rem_cache()
-                with open(log_filename, "w") as f:
-                    print(cleared, file=f)
+                rem_cache()
 
             self.app.exit("process complete", return_code=0)

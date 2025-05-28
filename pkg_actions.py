@@ -61,7 +61,7 @@ if which("expac") is not None:
         )
         output = process_result.stdout.strip()
 
-        with open(log_filename, "w") as f:
+        with open(log_filename, "a") as f:
             print(output, file=f)
         return output
 
@@ -76,7 +76,7 @@ if which("expac") is not None:
         )
         removed = process_result.stdout.strip()
 
-        with open(log_filename, "w") as f:
+        with open(log_filename, "a") as f:
             print(removed, file=f)
         return removed
 

@@ -1,5 +1,6 @@
 # <p align=center> PacLean <sup><sub><sup>*made with [Textual](https://textual.textualize.io/)*</sup></sub></sup> </p>
 
+<sub>*recorded with [asciinema](https://asciinema.org/)*</sub>
 ![Demo](demo.gif)
 
 ### The project is complete - please sit tight while I write documentation within the next few days.

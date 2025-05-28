@@ -7,7 +7,7 @@ from datetime import datetime
 log_filename = f"/tmp/PacLean{datetime.now().strftime('%Y%m%d-%H%M%S')}.log"
 
 if which("expac") is not None:
-    def get_explicit_pkgs() -> dict:
+    def get_explicit_pkgs() -> list:
         """Returns all explicitly installed packages as individual strings inside a list"""
 
         process_result = run(

@@ -5,6 +5,7 @@ from textual.widgets.selection_list import Selection
 from pkg_actions import get_explicit_pkgs, get_pkg_size, get_pkg_info, rem_pkg, rem_cache
 from shutil import which
 
+
 class PackageList(SelectionList):
     """Widget that displays a table of packages with sizes and install dates"""
 

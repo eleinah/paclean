@@ -2,9 +2,13 @@ from subprocess import run
 from shutil import which
 from sys import exit
 from datetime import datetime
+from os import path
 
-
-log_filename = f"/tmp/PacLean{datetime.now().strftime('%Y%m%d-%H%M%S')}.log"
+log_dir = "/var/log/paclean"
+log_filename = path.join(
+    log_dir,
+    f"run_{datetime.now().strftime('%Y%m%d-%H%M%S')}.log"
+)
 
 if which("expac") is not None:
     def get_explicit_pkgs() -> list:

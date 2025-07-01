@@ -1,0 +1,11 @@
+[project]
+name = "paclean"
+version = "0.1.0"
+description = "An interactive package cleaner for Arch Linux"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "rich~=14.0.0",
+    "textual~=3.2.0",
+    "textual-dev~=1.7.0",
+]

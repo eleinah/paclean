@@ -32,6 +32,11 @@ class PackageList(SelectionList):
         if self.selections:
             self.highlighted = 0
 
+    def key_j(self) -> None:
+        self.action_cursor_down()
+    def key_k(self) -> None:
+        self.action_cursor_up()
+
     def on_selection_list_selection_highlighted(self, event: SelectionList.SelectionHighlighted) -> None:
         """Called when a selection is highlighted"""
         if event.selection is not None:

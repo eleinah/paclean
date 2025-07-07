@@ -47,4 +47,4 @@ If you experience any issues, feel free to open an issue here on GitHub. **Pleas
 
 ---
 
-<sub> *There is definitely a possibility of me rewriting this in Go with [bubbletea](https://github.com/charmbracelet/bubbletea)* </sub>
+<sub> *I will be evolving this project by rewriting it in Go and giving it a different name - stay tuned! More functionality and speed!* </sub>

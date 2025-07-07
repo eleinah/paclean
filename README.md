@@ -41,10 +41,4 @@ For now, until I package this, you'll want to do the following:
 
 ---
 
-### <ins> Issues </ins>
-
-If you experience any issues, feel free to open an issue here on GitHub. **Please let it be known that this may not run as smooth on older/weaker hardware** - this is something on my TODO I need to get around to.
-
----
-
 <sub> *I will be evolving this project by rewriting it in Go and giving it a different name - stay tuned! More functionality and speed!* </sub>

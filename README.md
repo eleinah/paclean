@@ -1,7 +1,6 @@
-# <p align=center> PacLean <sup><sub><sup>*made with [Textual](https://textual.textualize.io/)*</sup></sub></sup> </p>
+# <p align=center> PacLean </p>
 #### <p align=center> PacLean is an interactive way to clean up explicitly installed packages on Arch Linux </p>
 
-<sub>*recorded with [asciinema](https://asciinema.org/)*</sub>
 ![Demo](demo.gif)
 
 ---

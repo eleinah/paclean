@@ -1,3 +1,8 @@
+# ⚠️ PLEASE SEE [*gupi*](https://github.com/eleinah/gupi) 
+This remains functional in the state I left it, but it does have some performance issues (from my limited testing on my older ThinkPad). This will no longer be updated, and I will not be packaging it here or the AUR.
+
+---
+
 # <p align=center> PacLean </p>
 #### <p align=center> PacLean is an interactive way to clean up explicitly installed packages on Arch Linux </p>
 
@@ -19,8 +24,6 @@ This requires a few packages for full functionality (all of which can be found i
 
 ### <ins> Usage </ins>
 
-For now, until I package this, you'll want to do the following:
-
 1. Clone the repo:
    
    ```
@@ -37,7 +40,3 @@ For now, until I package this, you'll want to do the following:
 3. Use the arrow keys to move around, `Tab` to switch focus between panes, and `Space`/`Enter` to make a selection
 
 `Ctrl+Q` can be used to quit.
-
----
-
-<sub> *I will be evolving this project by rewriting it in Go and giving it a different name - stay tuned! More functionality and speed!* </sub>

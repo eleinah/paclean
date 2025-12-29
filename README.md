@@ -1,4 +1,4 @@
-# ⚠️ PLEASE SEE [*gupi*](https://github.com/eleinah/gupi) 
+# ⚠️ Archived 
 This remains functional in the state I left it, but it does have some performance issues (from my limited testing on my older ThinkPad). This will no longer be updated, and I will not be packaging it here or the AUR.
 
 ---
